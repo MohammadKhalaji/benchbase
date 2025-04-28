@@ -17,6 +17,10 @@ public class Q11 extends GenericQuery {
     // LO_DISCOUNT: 0 -> 10
     // LO_QUANTITY: 1 -> 50
     // Discount is between x - 1 and x + 1
+    // FF in the paper = (1/7) * (1/2) * (3/11)
+    // 1/7 is for the year predicate
+    // 3/11 is for the discount predicate (11 values, 3 selected in the query)
+    // 1/2 is for the quantity predicate => LO_QUANTITY predicate needs to be hardcoded to 25
 
     public final SQLStmt query_stmt = 
         new SQLStmt(
@@ -26,7 +30,7 @@ public class Q11 extends GenericQuery {
             WHERE LO_ORDERDATE = D_DATEKEY
             AND D_YEAR = ?
             AND LO_DISCOUNT BETWEEN ? AND ?
-            AND LO_QUANTITY < ?;       
+            AND LO_QUANTITY < 25;       
             """
         );
     
@@ -38,16 +42,14 @@ public class Q11 extends GenericQuery {
         
         int year = rand.number(1992, 1998);
         int discount = rand.number(1, 9); // TODO: 1,9 or 0,10?
-        int quantity = rand.number(2, 50); // min is 2 because the predicate is not inclusive
+        // int quantity = rand.number(2, 50); // min is 2 because the predicate is not inclusive
 
 
         stmt.setInt(1, year);
         stmt.setInt(2, discount - 1); // discount is between x - 1 and x + 1
         stmt.setInt(3, discount + 1); // discount is between x - 1 and x + 1
-        stmt.setInt(4, quantity); // LO_QUANTITY < 25
-        
+        // stmt.setInt(4, quantity); // LO_QUANTITY < 25
 
-        // Set the parameters for the query
 
         return stmt;
     }
