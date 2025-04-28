@@ -13,19 +13,19 @@ DROP TABLE IF EXISTS LINEORDER CASCADE;
 
 -- DATE TABLE
 CREATE TABLE DATE (
-    D_DATEKEY integer NOT NULL,
-    D_DATE char(18) NOT NULL,
-    D_DAYOFWEEK char(8) NOT NULL,
-    D_MONTH char(9) NOT NULL,
-    D_YEAR smallint NOT NULL,
-    D_YEARMONTHNUM smallint NOT NULL,
-    D_YEARMONTH char(7) NOT NULL,
-    D_DAYNUMINWEEK smallint NOT NULL,
-    D_DAYNUMINMONTH smallint NOT NULL,
-    D_DAYNUMINYEAR smallint NOT NULL,
-    D_MONTHNUMINYEAR smallint NOT NULL,
-    D_WEEKNUMINYEAR smallint NOT NULL,
-    D_SELLINGSEASON char(12) NOT NULL,
+    D_DATEKEY integer NOT NULL, -- eg: 19980101
+    D_DATE char(18) NOT NULL, -- eg: December 31, 1997
+    D_DAYOFWEEK char(8) NOT NULL, -- values: 7 values: SUNDAY to SATURDAY
+    D_MONTH char(9) NOT NULL, -- values: 12 values: JANUARY to DECEMBER
+    D_YEAR smallint NOT NULL, -- values: 1992-1998 (7 values)
+    D_YEARMONTHNUM smallint NOT NULL, -- format: YYYYMM (eg: 199801)
+    D_YEARMONTH char(7) NOT NULL, -- format Mar1998
+    D_DAYNUMINWEEK smallint NOT NULL, -- values: 1-7
+    D_DAYNUMINMONTH smallint NOT NULL, -- values: 1-31
+    D_DAYNUMINYEAR smallint NOT NULL, -- values: 1-366
+    D_MONTHNUMINYEAR smallint NOT NULL, -- values: 1-12
+    D_WEEKNUMINYEAR smallint NOT NULL, -- values: 1-53
+    D_SELLINGSEASON char(12) NOT NULL, -- eg: Christmas
     D_LASTDAYINWEEKFL bit(1) NOT NULL,
     D_LASTDAYINMONTHFL bit(1) NOT NULL,
     D_HOLIDAYFL bit(1) NOT NULL,
@@ -37,13 +37,13 @@ CREATE TABLE DATE (
 CREATE TABLE PART (
     P_PARTKEY integer NOT NULL,
     P_NAME varchar(22) NOT NULL,
-    P_MFGR char(6) NOT NULL,
-    P_CATEGORY char(7) NOT NULL,
-    P_BRAND char(9) NOT NULL,
-    P_COLOR varchar(11) NOT NULL,
-    P_TYPE varchar(25) NOT NULL,
-    P_SIZE smallint NOT NULL,
-    P_CONTAINER char(10) NOT NULL,
+    P_MFGR char(6) NOT NULL, -- values: MFGR#1 to MFGR#5 (5 values)
+    P_CATEGORY char(7) NOT NULL, -- values: MFGR#||1-5||1-5|| (25 values)
+    P_BRAND char(9) NOT NULL, -- values: P_CATEGORY||1-40 (1000 values)
+    P_COLOR varchar(11) NOT NULL, -- values: 94 values
+    P_TYPE varchar(25) NOT NULL, -- values: 150 values
+    P_SIZE smallint NOT NULL, -- values: 1-50
+    P_CONTAINER char(10) NOT NULL, -- values: 40 values
     PRIMARY KEY (P_PARTKEY)
 ); 
 
@@ -51,13 +51,12 @@ CREATE TABLE PART (
 -- SUPPLIER TABLE
 CREATE TABLE SUPPLIER (
     S_SUPPKEY integer NOT NULL,
-    S_NAME char(25) NOT NULL,
+    S_NAME char(25) NOT NULL, -- values: Supplier||SUPPKEY
     S_ADDRESS varchar(25) NOT NULL,
-    S_CITY char(10) NOT NULL,
-    S_NATION_PREFIX char(1) NOT NULL,
-    S_NATION char(15) NOT NULL,
-    S_REGION char(12) NOT NULL,
-    S_PHONE char(15) NOT NULL,
+    S_CITY char(10) NOT NULL, -- 10 cities per nation: S_NATION_PREFIX||(0-9) => 250 values
+    S_NATION char(15) NOT NULL, -- values: 25 values (longest: UNITED KINGDOM)
+    S_REGION char(12) NOT NULL, -- values: 5 values (longest: MIDDLE EAST)
+    S_PHONE char(15) NOT NULL, -- values: many (format: 43-617-354-1222)
     PRIMARY KEY (S_SUPPKEY)
 ); 
 
@@ -65,14 +64,13 @@ CREATE TABLE SUPPLIER (
 -- CUSTOMER TABLE 
 CREATE TABLE CUSTOMER (
     C_CUSTKEY integer NOT NULL,
-    C_NAME varchar(25) NOT NULL,
-    C_ADDRESS varchar(25) NOT NULL,
-    C_CITY char(10) NOT NULL,
-    C_NATION_PREFIX char(1) NOT NULL,
-    C_NATION char(15) NOT NULL,
-    C_REGION char(12) NOT NULL,
-    C_PHONE char(15) NOT NULL,
-    C_MKTSEGMENT char(10) NOT NULL,
+    C_NAME varchar(25) NOT NULL, -- values: Customer||CUSTKEY
+    C_ADDRESS varchar(25) NOT NULL, 
+    C_CITY char(10) NOT NULL, -- values: 10 cities per nation: C_NATION_PREFIX||(0-9) => 250 values
+    C_NATION char(15) NOT NULL, -- values: 25 values (longest: UNITED KINGDOM)
+    C_REGION char(12) NOT NULL, -- values: 5 values (longest: MIDDLE EAST)
+    C_PHONE char(15) NOT NULL, -- values: many (format: 43-617-354-1222)
+    C_MKTSEGMENT char(10) NOT NULL, -- values: 10 values (longest: AUTOMOBILE)
     PRIMARY KEY (C_CUSTKEY)
 ); 
 
@@ -80,22 +78,22 @@ CREATE TABLE CUSTOMER (
 -- LINEORDER TABLE
 CREATE TABLE LINEORDER (
     LO_ORDERKEY integer NOT NULL,
-    LO_LINENUMBER smallint NOT NULL,
+    LO_LINENUMBER smallint NOT NULL, -- values: 1-7
     LO_CUSTKEY integer NOT NULL,
     LO_PARTKEY integer NOT NULL,
     LO_SUPPKEY integer NOT NULL,
     LO_ORDERDATE integer NOT NULL,
-    LO_ORDERPRIORITY char(15) NOT NULL,
-    LO_SHIPPRIORITY char(1) NOT NULL,
-    LO_QUANTITY smallint NOT NULL,
-    LO_EXTENDEDPRICE INTEGER NOT NULL,
-    LO_ORDTOTALPRICE INTEGER NOT NULL,
-    LO_DISCOUNT smallint NOT NULL,
-    LO_REVENUE INTEGER NOT NULL,
-    LO_SUPPLYCOST INTEGER NOT NULL,
-    LO_TAX smallint NOT NULL,
+    LO_ORDERPRIORITY char(15) NOT NULL, -- values: 1-URGENT to 5-SOMETHING
+    LO_SHIPPRIORITY char(1) NOT NULL, 
+    LO_QUANTITY smallint NOT NULL, -- values: 1-50
+    LO_EXTENDEDPRICE INTEGER NOT NULL, -- values <= 55,450
+    LO_ORDTOTALPRICE INTEGER NOT NULL, -- values <= 388,000
+    LO_DISCOUNT smallint NOT NULL, -- values: 0-10
+    LO_REVENUE INTEGER NOT NULL, -- (lo_extendedprice*(100-lo_discount)/100)
+    LO_SUPPLYCOST INTEGER NOT NULL, 
+    LO_TAX smallint NOT NULL, -- values: 0-8
     LO_COMMITDATE integer NOT NULL,
-    LO_SHIPMODE char(10) NOT NULL,
+    LO_SHIPMODE char(10) NOT NULL, -- values: 7 modes: REG AIR, AIR etc
 
     FOREIGN KEY (LO_CUSTKEY) REFERENCES CUSTOMER (C_CUSTKEY) ON DELETE CASCADE,
     FOREIGN KEY (LO_PARTKEY) REFERENCES PART (P_PARTKEY) ON DELETE CASCADE,
