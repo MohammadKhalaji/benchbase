@@ -21,4 +21,10 @@ public class SSBUtil {
         int secondCatDigit = rand.number(1, 5);
         return String.format("MFGR#%d%d", firstCatDigit, secondCatDigit);
     }
+
+    // 40 possible brands per category 
+    public static String genrateRandomBrandForCategory(String category, RandomGenerator rand) {
+        int forty = rand.number(1, 40);
+        return String.format("%s%02d", category, forty);
+    }
 }

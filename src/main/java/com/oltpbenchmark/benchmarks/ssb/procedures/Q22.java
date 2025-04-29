@@ -37,14 +37,12 @@ public class Q22 extends GenericQuery {
             Connection conn, RandomGenerator rand, double scaleFactor) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
-        int firstCatDigit = rand.number(1, 5);
-        int secondCatDigit = rand.number(1, 5);
-        String cateogry = String.format("%d%d", firstCatDigit, secondCatDigit);
+        String category = SSBUtil.generateRandomCategory(rand);
 
         int firstOfForty = rand.number(1, 33);
         int lastOfForty = firstOfForty + 7; // 8 values
-        String lowBound = String.format("MFGR#%s%02d", cateogry, firstOfForty);
-        String highBound = String.format("MFGR#%s%02d", cateogry, lastOfForty);
+        String lowBound = String.format("%s%02d", category, firstOfForty);
+        String highBound = String.format("%s%02d", category, lastOfForty);
 
         String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
 

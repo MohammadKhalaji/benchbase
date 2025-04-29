@@ -37,14 +37,8 @@ public class Q23 extends GenericQuery {
     ) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
-        int firstCatDigit = rand.number(1, 5);
-        int secondCatDigit = rand.number(1, 5);
-        String cateogry = String.format("%d%d", firstCatDigit, secondCatDigit);
-
-        int forty = rand.number(1, 40);
-        
-        String brand = String.format("MFGR#%s%02d", cateogry, forty);
-
+        String category = SSBUtil.generateRandomCategory(rand);
+        String brand = SSBUtil.genrateRandomBrandForCategory(category, rand);
 
         String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
 

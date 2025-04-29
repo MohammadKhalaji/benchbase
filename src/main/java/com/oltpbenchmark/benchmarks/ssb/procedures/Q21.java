@@ -35,9 +35,7 @@ public class Q21 extends GenericQuery {
     ) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
-        int firstCatDigit = rand.number(1, 5);
-        int secondCatDigit = rand.number(1, 5);
-        String category = String.format("MFGR#%d%d", firstCatDigit, secondCatDigit);
+        String category = SSBUtil.generateRandomCategory(rand);
 
         String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
 
