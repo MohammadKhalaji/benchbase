@@ -10,12 +10,10 @@ import com.oltpbenchmark.benchmarks.ssb.SSBUtil;
 
 public class Q31 extends GenericQuery {
 
-    // FF from the paper: (1/1000) * (1/5) = 1/5000
-    // The 1/1000 factor corresponds to the P_BRAND predicate 
-    // P_BRAND values according to DDL: P_CATEGORY||1-40 => 25 * 40 = 1000 values 
-    // The example in the paper is P_BRAND = 'MFGR#2221' 
-
-    // The 1/5 factor corresponds to the S_REGION predicate (5 values)
+    // FF from the paper: (1/5) * (1/5) * (6/7) = 6/175
+    // (1/5): C_REGION 
+    // (1/5): S_REGION
+    // (6/7): D_YEAR
 
     public final SQLStmt query_stmt = new SQLStmt(
         """
@@ -36,15 +34,16 @@ public class Q31 extends GenericQuery {
     ) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
-        String category = SSBUtil.generateRandomCategory(rand);
-        String brand = SSBUtil.genrateRandomBrandForCategory(category, rand);
-
         String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
+        // TODO: is there only one region?
 
-        stmt.setString(1, brand);
+        int startYear = SSBUtil.generateRandomYearRangeStart(5, rand);
+        int endYear = startYear + 5;
+
+        stmt.setString(1, region);
         stmt.setString(2, region);
-
-
+        stmt.setInt(3, startYear);
+        stmt.setInt(4, endYear);
         return stmt;
     }
 }
