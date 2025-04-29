@@ -5,6 +5,8 @@ import com.oltpbenchmark.util.RandomGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import com.oltpbenchmark.benchmarks.ssb.SSBConstants;
+import com.oltpbenchmark.benchmarks.ssb.SSBUtil;
 
 
 public class Q21 extends GenericQuery {
@@ -37,8 +39,7 @@ public class Q21 extends GenericQuery {
         int secondCatDigit = rand.number(1, 5);
         String category = String.format("MFGR#%d%d", firstCatDigit, secondCatDigit);
 
-        int regionIndex = rand.number(1, 5) - 1; // 0-4
-        String region = regions[regionIndex];
+        String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
 
         stmt.setString(1, category);
         stmt.setString(2, region);
