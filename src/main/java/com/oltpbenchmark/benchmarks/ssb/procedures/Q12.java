@@ -22,7 +22,7 @@ public class Q12 extends GenericQuery {
         WHERE LO_ORDERDATE = D_DATEKEY
         AND D_YEARMONTHNUM = ?
         AND LO_DISCOUNT BETWEEN ? AND ?
-        AND LO_QUANTITY BETWEEN ? AND ?       
+        AND LO_QUANTITY BETWEEN ? AND ?;    
         """
     ); 
 
@@ -34,7 +34,7 @@ public class Q12 extends GenericQuery {
 
         int year = SSBUtil.generateRandomYear(rand);
         int month = SSBUtil.generateRandomMonth(rand);
-        int yearMonth = year * 100 + month; // D_YEARMONTHNUM is YYYYMM
+        int yearMonth = SSBUtil.getYearMonthNumber(year, month); // D_YEARMONTHNUM is YYYYMM
         
         int discountRangeCenter = SSBUtil.generateRandomDiscountRangeCenter(1, rand);
 

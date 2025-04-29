@@ -23,7 +23,7 @@ public class Q13 extends GenericQuery {
         AND D_WEEKNUMINYEAR = ?
         AND D_YEAR = ?
         AND LO_DISCOUNT BETWEEN ? AND ?
-        AND LO_QUANTITY BETWEEN ? AND ?       
+        AND LO_QUANTITY BETWEEN ? AND ?;      
         """
     ); 
 

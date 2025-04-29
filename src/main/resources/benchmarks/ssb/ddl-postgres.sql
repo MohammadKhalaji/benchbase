@@ -85,7 +85,7 @@ CREATE TABLE LINEORDER (
     LO_ORDERDATE integer NOT NULL,
     LO_ORDERPRIORITY char(15) NOT NULL, -- values: 1-URGENT to 5-SOMETHING
     LO_SHIPPRIORITY char(1) NOT NULL, 
-    LO_QUANTITY smallint NOT NULL, -- values: 1-50
+    LO_  smallint NOT NULL, -- values: 1-50
     LO_EXTENDEDPRICE INTEGER NOT NULL, -- values <= 55,450
     LO_ORDTOTALPRICE INTEGER NOT NULL, -- values <= 388,000
     LO_DISCOUNT smallint NOT NULL, -- values: 0-10
