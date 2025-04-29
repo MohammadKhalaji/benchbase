@@ -27,4 +27,35 @@ public class SSBUtil {
         int forty = rand.number(1, 40);
         return String.format("%s%02d", category, forty);
     }
+
+    // 7 possible years
+    public static int generateRandomYear(RandomGenerator rand) {
+        return rand.number(1992, 1998);
+    }
+
+    // 12 possible months
+    public static int generateRandomMonth(RandomGenerator rand) {
+        return rand.number(1, 12);
+    }
+
+    public static int generateRandomWeek(RandomGenerator rand) {
+        return rand.number(1, 53);
+    }
+
+    public static int generateRandomDiscount(RandomGenerator rand) {
+        return rand.number(0, 10);
+    }
+
+    // Usually offset = 1
+    public static int generateRandomDiscountRangeCenter(int offset, RandomGenerator rand) {
+        return rand.number(0 + offset, 10 - offset);
+    } 
+
+    public static int generateRandomQuantity(RandomGenerator rand) {
+        return rand.number(1, 50);
+    }
+
+    public static int generateRandomQuantityRangeStart(int offset, RandomGenerator rand) {
+        return rand.number(1, 50 - offset);
+    }
 }

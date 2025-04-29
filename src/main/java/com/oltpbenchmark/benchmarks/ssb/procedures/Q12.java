@@ -1,6 +1,7 @@
 package com.oltpbenchmark.benchmarks.ssb.procedures;
 
 import com.oltpbenchmark.api.SQLStmt;
+import com.oltpbenchmark.benchmarks.ssb.SSBUtil;
 import com.oltpbenchmark.util.RandomGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,18 +32,18 @@ public class Q12 extends GenericQuery {
     ) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
-        int year = rand.number(1992, 1998);
-        int month = rand.number(1, 12);
+        int year = SSBUtil.generateRandomYear(rand);
+        int month = SSBUtil.generateRandomMonth(rand);
         int yearMonth = year * 100 + month; // D_YEARMONTHNUM is YYYYMM
         
-        int discount = rand.number(1, 9); // TODO: 1,9 or 0,10?
+        int discountRangeCenter = SSBUtil.generateRandomDiscountRangeCenter(1, rand);
 
-        int quantityStart = rand.number(1, 41); 
+        int quantityStart = SSBUtil.generateRandomQuantityRangeStart(9, rand);
         int quantityEnd = quantityStart + 9; // LO_QUANTITY BETWEEN x AND x + 9 => 10 values
 
         stmt.setInt(1, yearMonth);
-        stmt.setInt(2, discount - 1); // discount is between x - 1 and x + 1
-        stmt.setInt(3, discount + 1); // discount is between x - 1 and x + 1
+        stmt.setInt(2, discountRangeCenter - 1); // discount is between x - 1 and x + 1
+        stmt.setInt(3, discountRangeCenter + 1); // discount is between x - 1 and x + 1
         stmt.setInt(4, quantityStart); // LO_QUANTITY BETWEEN x AND x + 9
         stmt.setInt(5, quantityEnd); // LO_QUANTITY BETWEEN x AND x + 9
 

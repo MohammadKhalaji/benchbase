@@ -1,6 +1,8 @@
 package com.oltpbenchmark.benchmarks.ssb.procedures;
 
 import com.oltpbenchmark.api.SQLStmt;
+import com.oltpbenchmark.benchmarks.ssb.SSBConstants;
+import com.oltpbenchmark.benchmarks.ssb.SSBUtil;
 import com.oltpbenchmark.util.RandomGenerator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,14 +42,14 @@ public class Q11 extends GenericQuery {
     ) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt); 
         
-        int year = rand.number(1992, 1998);
-        int discount = rand.number(1, 9); // TODO: 1,9 or 0,10?
+        int year = SSBUtil.generateRandomYear(rand);
         // int quantity = rand.number(2, 50); // min is 2 because the predicate is not inclusive
-
+        
+        int discountRangeCenter = SSBUtil.generateRandomDiscountRangeCenter(1, rand);
 
         stmt.setInt(1, year);
-        stmt.setInt(2, discount - 1); // discount is between x - 1 and x + 1
-        stmt.setInt(3, discount + 1); // discount is between x - 1 and x + 1
+        stmt.setInt(2, discountRangeCenter - 1); // discount is between x - 1 and x + 1
+        stmt.setInt(3, discountRangeCenter + 1); // discount is between x - 1 and x + 1
         // stmt.setInt(4, quantity); // LO_QUANTITY < 25
 
 
