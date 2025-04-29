@@ -21,9 +21,8 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
 
     private enum CastTypes {
         LONG, 
-        DOUBLE, 
-        STRING, 
-        DATE
+        INTEGER,
+        STRING
     }; 
 
     private static final CastTypes[] dateTypes = {
@@ -31,17 +30,17 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
         CastTypes.STRING, // D_DATE
         CastTypes.STRING, // D_DAYOFWEEK
         CastTypes.STRING, // D_MONTH
-        CastTypes.LONG, // D_YEAR
-        CastTypes.LONG, // D_YEARMONTHNUM
+        CastTypes.INTEGER, // D_YEAR
+        CastTypes.INTEGER, // D_YEARMONTHNUM
         CastTypes.STRING, // D_YEARMONTH
-        CastTypes.LONG, // D_DAYNUMINWEEK
-        CastTypes.LONG, // D_DAYNUMINMONTH
-        CastTypes.LONG, // D_DAYNUMINYEAR
-        CastTypes.LONG, // D_MONTHNUMINYEAR
-        CastTypes.LONG, // D_WEEKNUMINYEAR
+        CastTypes.INTEGER, // D_DAYNUMINWEEK
+        CastTypes.INTEGER, // D_DAYNUMINMONTH
+        CastTypes.INTEGER, // D_DAYNUMINYEAR
+        CastTypes.INTEGER, // D_MONTHNUMINYEAR
+        CastTypes.INTEGER, // D_WEEKNUMINYEAR
         CastTypes.STRING, // D_SELLINGSEASON
-        CastTypes.LONG, // D_LASTDAYINWEEKFL
-        CastTypes.LONG, // D_LASTDAYINMONTHFL
+        CastTypes.INTEGER, // D_LASTDAYINWEEKFL
+        CastTypes.INTEGER, // D_LASTDAYINMONTHFL
     };
 
     private static final CastTypes[] partTypes = {
@@ -52,7 +51,7 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
         CastTypes.STRING, // P_BRAND
         CastTypes.STRING, // P_COLOR
         CastTypes.STRING, // P_TYPE
-        CastTypes.LONG, // P_SIZE
+        CastTypes.INTEGER, // P_SIZE
         CastTypes.STRING, // P_CONTAINER
     };
 
@@ -88,13 +87,13 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
         CastTypes.LONG, // LO_ORDERDATE
         CastTypes.STRING, // LO_ORDERPRIORITY
         CastTypes.STRING, // LO_SHIPPRIORITY
-        CastTypes.LONG, // LO_QUANTITY
+        CastTypes.INTEGER, // LO_QUANTITY
         CastTypes.LONG, // LO_EXTENDEDPRICE
         CastTypes.LONG, // LO_ORDTOTALPRICE
-        CastTypes.LONG, // LO_DISCOUNT
+        CastTypes.INTEGER, // LO_DISCOUNT
         CastTypes.LONG, // LO_REVENUE
         CastTypes.LONG, // LO_SUPPLYCOST
-        CastTypes.LONG, // LO_TAX
+        CastTypes.INTEGER, // LO_TAX
         CastTypes.LONG, // LO_COMMITDATE
         CastTypes.STRING, // LO_SHIPMODE
     };
