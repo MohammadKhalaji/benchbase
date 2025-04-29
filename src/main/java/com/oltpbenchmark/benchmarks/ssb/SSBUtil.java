@@ -116,4 +116,8 @@ public class SSBUtil {
     public static String getYearMonth(int year, int month) {
         return String.format("%s%d", getMonthShortString(month), year);
     }
+
+    public static String generateRandomMfgr(RandomGenerator rand) {
+        return String.format("MFGR#%d", rand.number(1, 5));
+    }
 }
