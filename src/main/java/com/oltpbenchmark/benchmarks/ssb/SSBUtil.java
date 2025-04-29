@@ -14,4 +14,11 @@ public class SSBUtil {
     public static <T> T choice(T[] array, RandomGenerator rand) {
         return array[rand.number(1, array.length) - 1];
     }
+
+
+    public static String generateRandomCategory(RandomGenerator rand) {
+        int firstCatDigit = rand.number(1, 5);
+        int secondCatDigit = rand.number(1, 5);
+        return String.format("MFGR#%d%d", firstCatDigit, secondCatDigit);
+    }
 }
