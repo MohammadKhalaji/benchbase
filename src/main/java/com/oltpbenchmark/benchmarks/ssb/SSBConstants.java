@@ -1,42 +1,49 @@
 package com.oltpbenchmark.benchmarks.ssb;
 
 public class SSBConstants {
-    public static final String[] REGIONS = {
-            "AFRICA",
-            "AMERICA",
-            "ASIA",
-            "CANADA",
-            "EUROPE"
-    };
 
-    public static final String[] SHIPMODES = { "REG AIR", "AIR", "RAIL", "SHIP", "TRUCK", "MAIL", "FOB" };
+        public static final String TABLENAME_DATE = "DATE"; 
+        public static final String TABLENAME_PART = "PART";
+        public static final String TABLENAME_SUPPLIER = "SUPPLIER";
+        public static final String TABLENAME_CUSTOMER = "CUSTOMER";
+        public static final String TABLENAME_LINEORDER = "LINEORDER";
 
-    public static final String[] NATIONS = {
-            "ALGERIA",
-            "ARGENTINA",
-            "BRAZIL",
-            "CANADA",
-            "EGYPT",
-            "ETHIOPIA",
-            "FRANCE",
-            "GERMANY",
-            "INDIA",
-            "INDONESIA",
-            "IRAN",
-            "IRAQ",
-            "JAPAN",
-            "JORDAN",
-            "KENYA",
-            "MOROCCO",
-            "MOZAMBIQUE",
-            "PERU",
-            "CHINA",
-            "ROMANIA",
-            "SAUDI ARABIA",
-            "VIETNAM",
-            "RUSSIA",
-            "UNITED KINGDOM",
-            "UNITED STATES"
-    };
+        public static final String[] REGIONS = {
+                        "AFRICA",
+                        "AMERICA",
+                        "ASIA",
+                        "CANADA",
+                        "EUROPE"
+        };
+
+        public static final String[] SHIPMODES = { "REG AIR", "AIR", "RAIL", "SHIP", "TRUCK", "MAIL", "FOB" };
+
+        public static final String[] NATIONS = {
+                        "ALGERIA",
+                        "ARGENTINA",
+                        "BRAZIL",
+                        "CANADA",
+                        "EGYPT",
+                        "ETHIOPIA",
+                        "FRANCE",
+                        "GERMANY",
+                        "INDIA",
+                        "INDONESIA",
+                        "IRAN",
+                        "IRAQ",
+                        "JAPAN",
+                        "JORDAN",
+                        "KENYA",
+                        "MOROCCO",
+                        "MOZAMBIQUE",
+                        "PERU",
+                        "CHINA",
+                        "ROMANIA",
+                        "SAUDI ARABIA",
+                        "VIETNAM",
+                        "RUSSIA",
+                        "UNITED KINGDOM",
+                        "UNITED STATES"
+        };
 
 }

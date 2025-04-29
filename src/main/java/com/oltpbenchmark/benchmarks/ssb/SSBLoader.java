@@ -108,6 +108,119 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
     @Override 
     public List<LoaderThread> createLoaderThreads() {
         // TODO: complete implementation
+        List<LoaderThread> threads = new ArrayList<>();
+
+        final CountDownLatch latch = new CountDownLatch(4);  // 4 tables to create before lineorder
+
+        final double scaleFactor = this.workConf.getScaleFactor();
+
+
+        // Date
+        threads.add(
+            new LoaderThread(this.benchmark) {
+                @Override
+                public void beforeLoad() {
+
+                }
+
+                @Override
+                public void load(Connection conn) throws SQLException {
+                    // TODO
+                }
+
+                @Override
+                public void afterLoad() {
+                    latch.countDown();
+                }
+            }
+        );
+
+        // part
+        threads.add(
+            new LoaderThread(this.benchmark) {
+                @Override
+                public void beforeLoad() {
+
+                }
+
+                @Override
+                public void load(Connection conn) throws SQLException {
+                    // TODO
+                }
+
+                @Override
+                public void afterLoad() {
+                    latch.countDown();
+                }
+            }
+        );
+
+        // supplier 
+        threads.add(
+            new LoaderThread(this.benchmark) {
+                @Override
+                public void beforeLoad() {
+
+                }
+
+                @Override
+                public void load(Connection conn) throws SQLException {
+                    // TODO
+                }
+
+                @Override
+                public void afterLoad() {
+                    latch.countDown();
+                }
+            }
+        );
+
+
+        // customer 
+        threads.add(
+            new LoaderThread(this.benchmark) {
+                @Override
+                public void beforeLoad() {
+
+                }
+
+                @Override
+                public void load(Connection conn) throws SQLException {
+                    // TODO
+                }
+
+                @Override
+                public void afterLoad() {
+                    latch.countDown();
+                }
+            }
+        );
+
+
+        // lineorder
+        threads.add(
+            new LoaderThread(this.benchmark) {
+                @Override
+                public void beforeLoad() {
+
+                }
+
+                @Override
+                public void load(Connection conn) throws SQLException {
+                    // TODO
+                }
+
+                @Override
+                public void afterLoad() {
+                    try {
+                        latch.await();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        );
+
         return null;
     }
 }
