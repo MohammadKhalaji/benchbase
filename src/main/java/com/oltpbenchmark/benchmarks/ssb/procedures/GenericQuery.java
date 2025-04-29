@@ -30,6 +30,14 @@
  public abstract class GenericQuery extends Procedure {
  
    protected static final Logger LOG = LoggerFactory.getLogger(GenericQuery.class);
+
+   public final String[] regions = {
+       "AFRICA",
+       "AMERICA",
+       "ASIA",
+       "EUROPE",
+       "MIDDLE EAST"
+   };
  
    protected abstract PreparedStatement getStatement(
        Connection conn, RandomGenerator rand, double scaleFactor) throws SQLException;

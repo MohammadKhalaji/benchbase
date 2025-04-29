@@ -27,14 +27,6 @@ public class Q21 extends GenericQuery {
         """
     ); 
 
-    public final String[] regions = {
-        "AFRICA",
-        "AMERICA",
-        "ASIA",
-        "EUROPE",
-        "MIDDLE EAST"
-    };
-
     @Override
     protected PreparedStatement getStatement(
         Connection conn, RandomGenerator rand, double scaleFactor
