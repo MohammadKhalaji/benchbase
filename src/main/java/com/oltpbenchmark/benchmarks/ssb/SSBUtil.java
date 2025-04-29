@@ -15,7 +15,7 @@ public class SSBUtil {
         return array[rand.number(1, array.length) - 1];
     }
 
-
+    // 25 possible categories
     public static String generateRandomCategory(RandomGenerator rand) {
         int firstCatDigit = rand.number(1, 5);
         int secondCatDigit = rand.number(1, 5);
