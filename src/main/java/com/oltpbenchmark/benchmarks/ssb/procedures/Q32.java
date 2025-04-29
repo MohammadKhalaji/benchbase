@@ -26,7 +26,7 @@ public class Q32 extends GenericQuery {
         AND C_NATION = ?
         AND S_NATION = ?
         AND D_YEAR >= ? AND D_YEAR <= ?
-        GROUP BY C_SITY, S_CITY, D_YEAR
+        GROUP BY C_CITY, S_CITY, D_YEAR
         ORDER BY D_YEAR ASC, REVENUE DESC;
         """
     ); 
@@ -38,6 +38,7 @@ public class Q32 extends GenericQuery {
         PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
         String nation = SSBUtil.choice(SSBConstants.NATIONS, rand);
+        // TODO: is there only one nation?
 
         int startYear = SSBUtil.generateRandomYearRangeStart(5, rand);
         int endYear = startYear + 5;

@@ -26,7 +26,7 @@ public class Q34 extends GenericQuery {
         AND (C_CITY = ? OR C_CITY = ?)
         AND (S_CITY = ? OR S_CITY = ?)
         AND D_YEARMONTH = ?
-        GROUP BY C_SITY, S_CITY, D_YEAR
+        GROUP BY C_CITY, S_CITY, D_YEAR
         ORDER BY D_YEAR ASC, REVENUE DESC;
         """
     ); 
