@@ -19,7 +19,7 @@ public class Q43 extends GenericQuery {
 
     public final SQLStmt query_stmt = new SQLStmt(
         """
-        SELECT D_YEAR, C_NATION, SUM(LO_REVENUE - LO_SUPPLYCOST) AS PROFIT
+        SELECT D_YEAR, S_CITY, P_BRAND, SUM(LO_REVENUE - LO_SUPPLYCOST) AS PROFIT
         FROM DATE, CUSTOMER, SUPPLIER, PART, LINEORDER
         WHERE LO_CUSTKEY = C_CUSTKEY
         AND LO_SUPPKEY = S_SUPPKEY
