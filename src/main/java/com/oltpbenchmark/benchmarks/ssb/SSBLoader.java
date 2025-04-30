@@ -4,10 +4,21 @@ import com.oltpbenchmark.api.Loader;
 import com.oltpbenchmark.api.LoaderThread;
 import com.oltpbenchmark.catalog.Table;
 import com.oltpbenchmark.util.SQLUtil;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IO;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+
+import org.codehaus.commons.nullanalysis.NotNull;
 
 public final class SSBLoader extends Loader<SSBBenchmark> {
     public SSBLoader(SSBBenchmark benchmark) {
@@ -258,4 +269,44 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
         }
     }
 
+    static class FileIterable implements Iterable<List<String>> {
+
+        private final BufferedReader reader;
+        private String nextLine;
+
+        public FileIterable(File file) throws FileNotFoundException {
+            reader = new BufferedReader(new FileReader(file));
+            advance();
+        }
+
+        private void advance() {
+            try {
+                nextLine = reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public @NotNull Iterator<List<String>> iterator() {
+            return new Iterator<>() {
+                @Override
+                public boolean hasNext() {
+                    return (nextLine != null);
+                }
+
+                @Override
+                public List<String> next() {
+                    String line = nextLine;
+                    advance();
+                    return Arrays.asList(line.split("\\|"));
+                }
+
+                @Override
+                public void remove() {
+                    throw new UnsupportedOperationException();
+                }
+            };
+        }
+    }
 }
