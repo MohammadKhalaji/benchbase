@@ -29,8 +29,7 @@ public class SSBBenchmark extends BenchmarkModule {
     int numTerminals = workConf.getTerminals();
     LOG.info(String.format("Creating %d workers for SSB", numTerminals));
     for (int i = 0; i < numTerminals; i++) {
-      // TODO: Create a worker for SSB
-      // workers.add(new SSBWorker(this, i));
+      workers.add(new SSBWorker(this, i));
     }
     return workers;
   }
