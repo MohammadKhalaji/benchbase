@@ -181,10 +181,10 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
           @Override
           public void beforeLoad() {
             try {
-                latch.await();
-              } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-              }
+              latch.await();
+            } catch (InterruptedException e) {
+              throw new RuntimeException(e);
+            }
           }
 
           @Override
@@ -193,9 +193,7 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
           }
 
           @Override
-          public void afterLoad() {
-            
-          }
+          public void afterLoad() {}
         });
 
     return null;
