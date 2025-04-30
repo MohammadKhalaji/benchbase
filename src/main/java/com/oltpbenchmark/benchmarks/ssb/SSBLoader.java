@@ -100,7 +100,6 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
 
   @Override
   public List<LoaderThread> createLoaderThreads() {
-    // TODO: complete implementation
     List<LoaderThread> threads = new ArrayList<>();
 
     final CountDownLatch latch = new CountDownLatch(4); // 4 tables to create before lineorder
