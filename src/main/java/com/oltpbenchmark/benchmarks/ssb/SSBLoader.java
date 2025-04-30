@@ -195,6 +195,6 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
           public void afterLoad() {}
         });
 
-    return null;
+    return threads;
   }
 }
