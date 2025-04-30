@@ -15,10 +15,10 @@ DROP TABLE IF EXISTS LINEORDER CASCADE;
 CREATE TABLE DATE (
     D_DATEKEY integer NOT NULL, -- eg: 19980101
     D_DATE char(18) NOT NULL, -- eg: December 31, 1997
-    D_DAYOFWEEK char(8) NOT NULL, -- values: 7 values: SUNDAY to SATURDAY
+    D_DAYOFWEEK char(9) NOT NULL, -- values: 7 values: SUNDAY to SATURDAY
     D_MONTH char(9) NOT NULL, -- values: 12 values: JANUARY to DECEMBER
     D_YEAR smallint NOT NULL, -- values: 1992-1998 (7 values)
-    D_YEARMONTHNUM smallint NOT NULL, -- format: YYYYMM (eg: 199801) (12 * 7 = 84 values)
+    D_YEARMONTHNUM integer NOT NULL, -- format: YYYYMM (eg: 199801) (12 * 7 = 84 values)
     D_YEARMONTH char(7) NOT NULL, -- format Mar1998
     D_DAYNUMINWEEK smallint NOT NULL, -- values: 1-7
     D_DAYNUMINMONTH smallint NOT NULL, -- values: 1-31
