@@ -21,6 +21,7 @@ public class Q31 extends GenericQuery {
         SELECT C_NATION, S_NATION, D_YEAR, SUM(LO_REVENUE) as REVENUE
         FROM CUSTOMER, LINEORDER, SUPPLIER, DATE
         WHERE LO_CUSTKEY = C_CUSTKEY
+        AND LO_SUPPKEY = S_SUPPKEY
         AND LO_ORDERDATE = D_DATEKEY
         AND C_REGION = ? AND S_REGION = ?
         AND D_YEAR >= ? AND D_YEAR <= ?
@@ -35,6 +36,7 @@ public class Q31 extends GenericQuery {
 
     String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
     // TODO: is there only one region?
+    // Can be two...
 
     int startYear = SSBUtil.generateRandomYearRangeStart(5, rand);
     int endYear = startYear + 5;

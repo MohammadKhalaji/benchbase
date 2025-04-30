@@ -41,6 +41,9 @@ public class Q43 extends GenericQuery {
 
     String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
     String nation = SSBUtil.choice(SSBConstants.NATIONS, rand);
+    // TODO: does nation have to be in the region?
+    // No...
+
     int year1 = SSBUtil.generateRandomYear(rand);
     int year2 = SSBUtil.generateRandomYear(rand);
     while (year1 == year2) {

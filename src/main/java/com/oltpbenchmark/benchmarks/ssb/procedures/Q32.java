@@ -39,6 +39,7 @@ public class Q32 extends GenericQuery {
 
     String nation = SSBUtil.choice(SSBConstants.NATIONS, rand);
     // TODO: is there only one nation?
+    // Can be two...
 
     int startYear = SSBUtil.generateRandomYearRangeStart(5, rand);
     int endYear = startYear + 5;

@@ -39,6 +39,9 @@ public class Q41 extends GenericQuery {
     PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
     String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
+    // TODO: one region only?
+    // Can be two...
+
     String mfgr1 = SSBUtil.generateRandomMfgr(rand);
     String mfgr2 = SSBUtil.generateRandomMfgr(rand);
     while (mfgr1.equals(mfgr2)) {

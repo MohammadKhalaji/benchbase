@@ -37,6 +37,9 @@ public class Q42 extends GenericQuery {
     PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
     String region = SSBUtil.choice(SSBConstants.REGIONS, rand);
+    // TODO: one region only?
+    // Can be two
+    
     int year1 = SSBUtil.generateRandomYear(rand);
     int year2 = SSBUtil.generateRandomYear(rand);
     while (year1 == year2) {

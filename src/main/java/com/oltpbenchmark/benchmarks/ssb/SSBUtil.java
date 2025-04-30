@@ -69,6 +69,10 @@ public class SSBUtil {
     // e.g. "UNITED STATES" -> "UNITED ST"
     // e.g. "UNITED KINGDOM" -> "UNITED KI"
     if (nation.length() <= 9) {
+      // ssb dbgen generates city names like: 'IRAN     1'
+      while (nation.length() != 9) {
+        nation += " ";
+      }
       return nation;
     }
     return nation.substring(0, 9);

@@ -305,6 +305,23 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
     return threads;
   }
 
+  private String fixSsbDbgenBug(String input) {
+    // SSB DBGEN bug
+    // Brand names can be "MFGR#228" instead of "MFGR#2208", which messes up the lexicographical
+    // sorting in Q22, as an example
+    // A lot of queries will return 0 results, skewing the benchmark
+    // This is here to fix it
+    // It's a super quick patch because I didn't have time to spend on making this work cleanly
+
+    if (input.startsWith("MFGR#")
+        && input.length() > "MFGR#22".length()
+        && input.length() < "MFGR#2211".length()) {
+      return input.substring(0, 7) + "0" + input.substring(7, 8);
+    }
+
+    return input;
+  }
+
   private void genTable(
       Connection conn,
       PreparedStatement prepStmt,
@@ -325,7 +342,7 @@ public final class SSBLoader extends Loader<SSBBenchmark> {
                 prepStmt.setInt(idx + 1, Integer.parseInt(elems.get(idx)));
                 break;
               case STRING:
-                prepStmt.setString(idx + 1, elems.get(idx));
+                prepStmt.setString(idx + 1, fixSsbDbgenBug(elems.get(idx)));
                 break;
               case BIT:
                 // Casting to bit is done at the query level (see getInsertStatement). Only the
