@@ -37,15 +37,15 @@ public class Q32 extends GenericQuery {
       Connection conn, RandomGenerator rand, double scaleFactor) throws SQLException {
     PreparedStatement stmt = this.getPreparedStatement(conn, query_stmt);
 
-    String nation = SSBUtil.choice(SSBConstants.NATIONS, rand);
-    // TODO: is there only one nation?
-    // Can be two...
+    String nation1 = SSBUtil.choice(SSBConstants.NATIONS, rand);
+    String nation2 = SSBUtil.choice(SSBConstants.NATIONS, rand);
+    // Do not fuss about the nation1 and nation2 being the same
 
     int startYear = SSBUtil.generateRandomYearRangeStart(5, rand);
     int endYear = startYear + 5;
 
-    stmt.setString(1, nation);
-    stmt.setString(2, nation);
+    stmt.setString(1, nation1);
+    stmt.setString(2, nation2);
     stmt.setInt(3, startYear);
     stmt.setInt(4, endYear);
 

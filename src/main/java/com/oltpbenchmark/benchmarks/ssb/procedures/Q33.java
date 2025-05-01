@@ -44,13 +44,22 @@ public class Q33 extends GenericQuery {
       city2 = SSBUtil.generateRandomCityInNation(nation, rand);
     }
 
+
+    String nation2 = SSBUtil.choice(SSBConstants.NATIONS, rand);
+    // OK to be equal to nation 
+    String city3 = SSBUtil.generateRandomCityInNation(nation2, rand);
+    String city4 = SSBUtil.generateRandomCityInNation(nation2, rand);
+    while (city3.equals(city4)) {
+      city4 = SSBUtil.generateRandomCityInNation(nation2, rand);
+    }
+
     int startYear = SSBUtil.generateRandomYearRangeStart(5, rand);
     int endYear = startYear + 5;
 
     stmt.setString(1, city1);
     stmt.setString(2, city2);
-    stmt.setString(3, city1);
-    stmt.setString(4, city2);
+    stmt.setString(3, city3);
+    stmt.setString(4, city4);
     stmt.setInt(5, startYear);
     stmt.setInt(6, endYear);
 
