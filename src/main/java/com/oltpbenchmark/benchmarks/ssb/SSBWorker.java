@@ -7,6 +7,7 @@ import com.oltpbenchmark.types.TransactionStatus;
 import com.oltpbenchmark.util.RandomGenerator;
 import java.sql.Connection;
 import java.sql.SQLException;
+import com.oltpbenchmark.benchmarks.ssb.procedures.GenericQuery;
 
 public final class SSBWorker extends Worker<SSBBenchmark> {
   private final RandomGenerator rand;
@@ -20,7 +21,12 @@ public final class SSBWorker extends Worker<SSBBenchmark> {
   @Override
   protected TransactionStatus executeWork(Connection conn, TransactionType nextTransaction)
       throws UserAbortException, SQLException {
-
+    try {
+        GenericQuery proc = (GenericQuery) this.getProcedure(nextTransaction.getProcedureClass());
+        proc.run(conn, rand, this.configuration.getScaleFactor());
+    } catch (ClassCastException e) {
+        throw new RuntimeException(e);
+    }
     return (TransactionStatus.SUCCESS);
   }
 }
